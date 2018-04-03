@@ -21,30 +21,10 @@ foreach ($continents as $continent) {
     }));
 
 }
-//foreach ($animals as $animal)
-        //if(str_word_count()) {
-            //$allAnimals = array();
-            //foreach ($animals)
-
-        //array_push($allAnimals, $animal);
-            //echo $animal, '<br>';
-       //};
-
-        //if (str_word_count($animal)) {
-        //    array_push($twoWordsAnimals, $animal);
-        //}
-//print_r($allAnimals);
-
-//foreach ($allAnimals as $animal) {
-
-//}
 
 $animalsString = implode(" ", $allAnimals);
 
-//echo $animalsString;//выводим строку с названиями животных
-
 $animalsArray = explode(" ", $animalsString);
-//print_r($animalsArray);
 
 $evenWordsArray = array();
 $oddWordsArray = array();
@@ -57,14 +37,6 @@ foreach ($animalsArray as $key => $evenWord) {
     }
 }
 
-//echo "<br />";
-//print_r($oddWordsArray);
-
-//print_r($evenWordsArray);
-
-//reset($animalsArray);
-
-/* Выводим не парные */
 foreach ($animalsArray as $key => $oddWord) {
     if (($key + 1) % 2 == 0) {
         //echo $oddWord . '<br />';
@@ -72,19 +44,10 @@ foreach ($animalsArray as $key => $oddWord) {
     }
 }
 
-//echo "<br />";
-//print_r($oddWordsArray);
-
 shuffle($evenWordsArray);
 shuffle($oddWordsArray);
 
-//print_r($evenWordsArray);
-//echo "<br />";
-//print_r($oddWordsArray);
-//echo "<br />";
-
 $x = count($evenWordsArray);
-//echo $x;
 
 $a=0;
 while (++$a<$x)
