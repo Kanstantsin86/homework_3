@@ -50,6 +50,9 @@ shuffle($oddWordsArray);
 $x = count($evenWordsArray);
 
 $a=0;
+
+echo "<h4>Выдуманные животные:</h4>";
+
 while (++$a<$x)
     echo $evenWordsArray[$a] . " " . $oddWordsArray[$a] . "<br />";
 
