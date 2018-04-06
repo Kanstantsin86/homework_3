@@ -1,60 +1,70 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: 1
- * Date: 01.04.2018
- * Time: 20:23
- */
+
 $continents = array ("Africa" => array ("Giraffa camelopardalis", "Hippopotamus amphibius constrictus","Panthera leo"),
-                     "Eurasia" => array ("Ailuropoda melanoleuca", "Bison bonasus", "Lepus europaeus"),
-                     "North America" => array ("Procyon lotor", "Mephitidae", "Canis latrans"),
-                     "South America" => array ("Lama glama", "Choloepus didactylus", "Tremarctos ornatus"),
-                     "Australia" => array ("Vombatidae", "Macropus rufus", "Phascolarctos cinereus"),
-                     "Antarctica" => array ("Leptonychotes weddelli", "Eudyptes chrysocome")
+    "Eurasia" => array ("Ailuropoda melanoleuca", "Bison bonasus", "Lepus europaeus"),
+    "North America" => array ("Procyon lotor", "Mephitidae", "Canis latrans"),
+    "South America" => array ("Lama glama", "Choloepus didactylus", "Tremarctos ornatus"),
+    "Australia" => array ("Vombatidae", "Macropus rufus", "Phascolarctos cinereus"),
+    "Antarctica" => array ("Leptonychotes weddelli", "Eudyptes chrysocome"),
 );
 
-$allAnimals = array();
+$twoWordsName = [];
+foreach($continents as $continent => $animals){
+    foreach($animals as $animal){
+        $allAnimals= [];
+        $anim = explode(' ', $animal);
+        $allAnimals[]=$anim;
 
-foreach ($continents as $continent) {
-    $allAnimals = array_merge($allAnimals, array_filter($continent, function ($animals) {
-        return count(explode(' ', $animals)) === 2;
-    }));
-
-}
-
-$animalsString = implode(" ", $allAnimals);
-
-$animalsArray = explode(" ", $animalsString);
-
-$evenWordsArray = array();
-$oddWordsArray = array();
-
-
-foreach ($animalsArray as $key => $evenWord) {
-    if (($key + 1) % 2 != 0) {
-        //echo $evenWord . '<br />';
-        array_push($evenWordsArray, $evenWord);
+        foreach($allAnimals as $k){
+            if(count($k) === 2){
+                $separated = implode(",", $k);
+                $str = str_replace(',', ' ', $separated);
+                $twoWordsName[]=$str;
+            }
+        }
     }
 }
 
-foreach ($animalsArray as $key => $oddWord) {
-    if (($key + 1) % 2 == 0) {
-        //echo $oddWord . '<br />';
-        array_push($oddWordsArray, $oddWord);
+foreach($twoWordsName as $name){
+    $parts = explode(' ', $name);
+    $firstWord[] = $parts[0];
+    $secondWord[] = $parts[1];
+}
+
+$randomFirstWord = [];
+
+while (count($randomFirstWord) < count($twoWordsName)){
+    $test = $firstWord[rand(0, count($twoWordsName)-1)];
+    if (!in_array($test, $randomFirstWord)) {
+        $randomFirstWord[] = $test;
     }
 }
 
-shuffle($evenWordsArray);
-shuffle($oddWordsArray);
+$randomSecondWord = [];
 
-$x = count($evenWordsArray);
+while (count($randomSecondWord) < count($twoWordsName)){
+    $test = $secondWord[rand(0, count($twoWordsName)-1)];
+    if (!in_array($test, $randomSecondWord)) {
+        $randomSecondWord[] = $test;
+    }
+}
 
-$a=0;
+$finalResult = [];
+
+for($i = 0; $i < count($twoWordsName); $i++){
+    $finalResult[]= $randomFirstWord[$i] . ' ' . $randomSecondWord[$i];
+
+}
 
 echo "<h4>Выдуманные животные:</h4>";
 
-while (++$a<$x)
-    echo $evenWordsArray[$a] . " " . $oddWordsArray[$a] . "<br />";
+foreach ($finalResult as $value) {
+    echo "$value <br />";
+}
 
 ?>
+
+
+
+
 
