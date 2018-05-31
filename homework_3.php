@@ -63,8 +63,3 @@ foreach ($finalResult as $value) {
 }
 
 ?>
-
-
-
-
-
